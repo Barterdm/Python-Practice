@@ -2,12 +2,31 @@
 
 from random import randint
 
-reroll = 'y'
 
-while reroll == 'y':
-    d1 = randint(1,7)
-    d2 = randint(1,7)
-    rollMultiplier = int(input("How many dice to roll?: "))
-    result = ((d1 + d2) * rollMultiplier)
+def Dice():
+    reroll = 'y'
+    while True:
+        try:
+            multi = int(input("How many dice to roll?: "))
+            break
+        except:
+            print("Dice can't be letters, PUTZ!")
+
+    while reroll == 'y':
+        if multi < 1:
+            print("Try again Smartass!")
+        else:
+            print("Rolling Dice.....")
+            break
+    result = []
+    for i in range(multi):
+        result.append(randint(1, 6))
     print(result)
-    reroll = input("Do you want to roll again? y/n:")
+    total = print("The total of the roll is:  ", sum(result))
+    reroll = input("Do you want to roll again? y/n: ")
+    if reroll == 'n':
+        print("Thanks for playing!")
+    else:
+        Dice()
+
+Dice()
